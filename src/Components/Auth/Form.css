@@ -1,0 +1,28 @@
+.container {
+    position: relative;
+    min-width: 50%;
+    height:100%;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container {
+    display: flex;
+    width: 200%;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+  }
+  .form1{
+    width:50%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .show-login {
+    transform: translateX(0%);
+  }
+
+  .show-signup {
+    transform: translateX(-50%);
+  }
