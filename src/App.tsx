@@ -7,17 +7,12 @@ import { UserContex } from "./context/UserContext";
 import Header from "./Components/Header/Header";
 import ExpenseDetailScreen from "./Components/ExpenseDetail/ExpenseDetail";
 import Loader from "./Components/Loader/Loader";
-import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastManager } from "./Toast/ToastManager";
 import GeminiAi from "./Components/GeminiAi";
 
 function App() {
   const { user, isLoading } = useContext(UserContex);
-
-  useEffect(() => {
-    console.log("hey", user);
-  }, [user]);
 
   if (isLoading) {
     return <Loader />;

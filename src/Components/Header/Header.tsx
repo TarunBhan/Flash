@@ -15,9 +15,11 @@ const Header = () => {
   const iconRef = useRef<any>();
   const navigate = useNavigate();
   const handleLogout = async () => {
-    await signOut(auth).then(() => {
-      navigate("/");
-    });
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.log(e);
+    }
   };
   const handleOutsideClick = () => {
     setShowUserInfo(false);

@@ -3,12 +3,13 @@ import { FC, useContext, useEffect } from "react";
 import { auth } from "../../firebase";
 import { UserContex } from "../../context/UserContext";
 import Home from "../Home/Home";
+import Loader from "../Loader/Loader";
 
 const Layout: FC = () => {
-  const { user: userData } = useContext(UserContex);
+  const { user: userData, isLoading } = useContext(UserContex);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const subscription = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log("User is authenticated:", user);
       } else {
@@ -16,10 +17,12 @@ const Layout: FC = () => {
       }
     });
     // Clean up the subscription
-    return () => unsubscribe();
+    return () => subscription();
   }, []);
 
-  useEffect(() => {}, []);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div

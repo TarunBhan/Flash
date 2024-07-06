@@ -41,12 +41,10 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const getBudgetData = async () => {
     try {
-      let index = 0;
       let temp: any[] = [];
       let tempBudgetArray: string[] = [];
       const collectionRef = collection(db, `/users/${user.uid}/budgets`);
       const querySnapshot = await getDocs(collectionRef);
-
       querySnapshot.docs?.forEach((item) => {
         tempBudgetArray.push(item?.id);
         console.log(item.data()?.budgetValue, "asas");
@@ -71,6 +69,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     getUserData();
   }, []);
+
   useEffect(() => {
     user && getBudgetData();
   }, [user]);
