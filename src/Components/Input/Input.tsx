@@ -6,7 +6,8 @@ const Input: FC<{
   autoFocus?: boolean;
   placeHolder: string;
   props: any;
-}> = ({ headingText, type, autoFocus = false, placeHolder, props }) => {
+  style?: React.CSSProperties | undefined;
+}> = ({ headingText, type, autoFocus = false, placeHolder, props, style }) => {
   console.log(props, "index");
   return (
     <div
@@ -14,6 +15,7 @@ const Input: FC<{
         display: "flex",
         flexDirection: "column",
         width: "70%",
+        ...style,
       }}
     >
       <text

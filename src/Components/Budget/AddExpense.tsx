@@ -52,7 +52,7 @@ const AddExpense = () => {
       );
       setIsLoading(false);
       updateData();
-      //   reset();
+      // reset();
     } catch (e) {
       setIsLoading(false);
       console.log(e);

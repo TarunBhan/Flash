@@ -85,7 +85,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
 
       <Input
         type="text"
-        headingText="FirstName"
+        headingText="First Name"
         autoFocus={true}
         placeHolder={"FirstName"}
         props={register("firstName", {
@@ -96,9 +96,29 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
           },
         })}
       />
+      <div
+        style={{
+          height: "10px",
+          width: "70%",
+          paddingBottom: "10px",
+        }}
+      >
+        {errors?.firstName && (
+          <text
+            style={{
+              fontSize: baseTheme.fontSizes[0],
+              fontFamily: baseTheme.fonts.secondary,
+              fontWeight: baseTheme.fontWeights[3],
+              color: baseTheme.colors.red,
+            }}
+          >
+            {errors?.firstName?.message as any}
+          </text>
+        )}
+      </div>
       <Input
         type="text"
-        headingText="LastName"
+        headingText="Last Name"
         autoFocus={true}
         placeHolder={"Last Name"}
         props={register("lastName", {
@@ -109,7 +129,26 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
           },
         })}
       />
-
+      <div
+        style={{
+          height: "10px",
+          width: "70%",
+          paddingBottom: "10px",
+        }}
+      >
+        {errors?.lastName && (
+          <text
+            style={{
+              fontSize: baseTheme.fontSizes[0],
+              fontFamily: baseTheme.fonts.secondary,
+              fontWeight: baseTheme.fontWeights[3],
+              color: baseTheme.colors.red,
+            }}
+          >
+            {errors?.lastName?.message as any}
+          </text>
+        )}
+      </div>
       <Input
         type="email"
         headingText="Email"
@@ -162,7 +201,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
         style={{
           height: "10px",
           width: "70%",
-          paddingBottom: "15px",
+          paddingBottom: "20px",
         }}
       >
         {errors?.password?.message && (
@@ -192,7 +231,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "60px",
+          marginTop: "20px",
         }}
       >
         <text

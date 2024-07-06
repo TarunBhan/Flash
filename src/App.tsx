@@ -6,6 +6,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContex } from "./context/UserContext";
 import Header from "./Components/Header/Header";
 import ExpenseDetailScreen from "./Components/ExpenseDetail/ExpenseDetail";
+import Loader from "./Components/Loader/Loader";
 
 function App() {
   const { user, isLoading } = useContext(UserContex);
@@ -15,12 +16,7 @@ function App() {
   }, [user]);
 
   if (isLoading) {
-    console.log("render>>");
-    return (
-      <div>
-        <text>Loader</text>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
@@ -31,19 +27,19 @@ function App() {
           minHeight: "100vh",
           gridTemplateRows: "auto 1fr auto",
           gap: "var(--space-lg)",
-          paddingInline: "18px",
+          padding: "0px",
         }}
       >
-        {user && <Header />}
-        <BrowserRouter future={{ v7_startTransition: true }}>
+        <BrowserRouter>
+          <Header />
           <Routes>
             <Route
               path={user ? "/" : "/auth"}
               element={user ? <Layout /> : <Login />}
               index
             />
-            <Route path="/" element={<Layout />} />
-            <Route path="/:path" element={<Layout />} />
+
+            <Route path="/:path?" element={<Layout />} />
             <Route path="/auth" element={<Login />} />
             <Route
               path="/budget/:budgetName?"
@@ -57,6 +53,7 @@ function App() {
         style={{
           width: "100vw",
           display: "block",
+          position: "absolute",
         }}
       />
     </>

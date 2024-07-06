@@ -10,12 +10,13 @@ const Button: FC<{
   loading?: boolean;
   type?: "submit" | "reset" | "button" | undefined;
   btnHeight?: string;
+  btnColor?: string;
 }> = ({
   onClick,
   buttonText,
   buttonWidth = "70%",
   disable = false,
-
+  btnColor,
   loading = false,
   btnHeight = "35px",
   type = "button",
@@ -25,8 +26,8 @@ const Button: FC<{
       style={{
         height: `${btnHeight}`,
         width: buttonWidth,
-        backgroundColor: disable ? "grey" : "",
-        color: "white",
+        backgroundColor: disable ? "#e5e5e5" : "",
+        color: disable ? baseTheme.colors.grey : "white",
         marginTop: "-5px",
         pointerEvents: disable ? "none" : "auto",
       }}

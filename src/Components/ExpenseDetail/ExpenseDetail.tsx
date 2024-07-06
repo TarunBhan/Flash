@@ -12,15 +12,6 @@ const ExpenseDetailScreen: FC = () => {
   const { user } = useContext(UserContex);
   const [budgetData, setBudgetData] = useState<Budget | undefined>();
 
-  useEffect(() => {
-    user && getSingleBudgetData();
-  }, [user]);
-
-  if (!budgetName) {
-    navigate("/");
-    return <></>;
-  }
-
   const getSingleBudgetData = async () => {
     try {
       const docRef = doc(db, `users/${user?.uid}/budgets/${budgetName}`);
@@ -33,6 +24,15 @@ const ExpenseDetailScreen: FC = () => {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    user && getSingleBudgetData();
+  }, [user]);
+
+  if (!budgetName) {
+    navigate("/");
+    return <></>;
+  }
 
   console.log(">>>", budgetData);
   return (

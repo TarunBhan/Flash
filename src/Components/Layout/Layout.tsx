@@ -23,13 +23,10 @@ const Layout: FC = () => {
 
   return (
     <div
-      id="asa"
       style={{
         display: "grid",
-        width: "100%",
-        marginInline: "auto",
-
-        placeItems: "start",
+        paddingInline: "10px",
+        height: "100%",
       }}
     >
       <div
@@ -43,8 +40,7 @@ const Layout: FC = () => {
         }}
       >
         <Home />
-        {/* <BudgetWidget />
-        <ExpenseWidget /> */}
+        <div style={{ marginBottom: "100px" }} />
       </div>
     </div>
   );

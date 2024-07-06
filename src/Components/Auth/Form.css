@@ -5,6 +5,7 @@
     background-color: white;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius:12px;
   }
 
   .form-container {
@@ -18,7 +19,12 @@
     padding: 20px;
     box-sizing: border-box;
   }
+  @media screen and (min-width: 600px) {
+    .inputForm {
+      justify-content: center;
+    }
 
+}
   .show-login {
     transform: translateX(0%);
   }

@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContex } from "../../context/UserContext";
 import { auth } from "../../firebase";
 import { useForm } from "react-hook-form";
+import { FormWrapper, HeaderImage, ImageWrapper } from "./Login.styles";
 const Login: FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<{
@@ -64,6 +65,7 @@ const Login: FC = () => {
       setLoading(false);
     }
   };
+
   const name = isLoginForm ? "show-login" : "show-signup";
   return (
     <div
@@ -74,21 +76,35 @@ const Login: FC = () => {
         justifyContent: "center",
         alignItems: "center",
         display: "flex",
-        backgroundColor: "skyblue",
       }}
     >
-      <div
+      <FormWrapper
         style={{
           height: 450,
-          width: 700,
           backgroundColor: "white",
+          boxShadow: "rgba(0, 0, 0, 0.2) -1px -2px 19px 3px",
           borderRadius: "15px",
           justifyContent: "space-between",
           alignItems: "center",
           display: "flex",
+          marginInline: "15px",
         }}
       >
         <div className="container">
+          <HeaderImage
+            style={{
+              height: "50px",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={require("../../Assets/Images/Expense_bg.jpg")}
+              alt="Expense Image"
+              width="100px"
+              height="100px"
+            />
+          </HeaderImage>
           <div className={`form-container ${name}`}>
             <div className="form1">
               <Register
@@ -100,6 +116,7 @@ const Login: FC = () => {
             </div>
             <div className="form1">
               <form
+                className="inputForm"
                 style={{
                   minWidth: "50%",
                   height: "100%",
@@ -107,7 +124,6 @@ const Login: FC = () => {
                   flexDirection: "column",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
                   position: "relative",
                 }}
               >
@@ -173,7 +189,7 @@ const Login: FC = () => {
                   style={{
                     height: "10px",
                     width: "70%",
-                    paddingBottom: "15px",
+                    paddingBottom: "20px",
                   }}
                 >
                   {errors?.password?.message && (
@@ -203,7 +219,7 @@ const Login: FC = () => {
                   style={{
                     justifyContent: "center",
                     alignItems: "center",
-                    marginTop: "60px",
+                    marginTop: "20px",
                   }}
                 >
                   <text
@@ -213,7 +229,9 @@ const Login: FC = () => {
                       fontWeight: baseTheme.fontWeights[3],
                     }}
                   >
-                    {`Don't Have An Account?`}
+                    {isLoginForm
+                      ? `Don't Have An Account?`
+                      : "Already have a account?"}
                   </text>
                   <text
                     onClick={() => {
@@ -227,14 +245,14 @@ const Login: FC = () => {
                       paddingLeft: "1px",
                     }}
                   >
-                    {" Sign Up"}
+                    {isLoginForm ? " Sign Up" : "Login"}
                   </text>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div
+        <ImageWrapper
           style={{
             display: "flex",
             alignItems: "center",
@@ -247,8 +265,8 @@ const Login: FC = () => {
             width="90%"
             height="100%"
           />
-        </div>
-      </div>
+        </ImageWrapper>
+      </FormWrapper>
     </div>
   );
 };

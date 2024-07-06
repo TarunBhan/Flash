@@ -36,7 +36,6 @@ export const CustomButton = styled.button`
   background-color: #059ce8;
   transition: background 1s;
   &:hover {
-    background-color: #17a7f5;
     background-image: radial-gradient(circle, transparent 1%, #47a7f5 1%);
     background-size: 15000%;
     background-position: center;

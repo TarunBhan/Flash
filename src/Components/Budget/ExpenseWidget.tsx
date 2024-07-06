@@ -13,10 +13,11 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
   const { budgetName } = useParams();
   const { user, updateData } = useContext(UserContex);
   const navigate = useNavigate();
-  const color = baseTheme.colors.blue;
+  const color = "#009ce8";
   const { totalExpenses, amountLeft, widthPercentage } =
     getDetailedExpensesInfo(budgetData);
-  console.log(">>>>>");
+
+  console.log("hey>>>", color);
   const deleteBudget = async () => {
     try {
       const expenseDocRef = doc(
@@ -39,7 +40,7 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
         height: "180px",
         borderRadius: "12px",
         maxWidth: "380px",
-        boxShadow: "rgba(27,187,195,0.5) -1px -2px 19px 3px",
+        boxShadow: `${color} -1px -2px 19px 3px`,
         padding: "10px",
         justifyContent: "center",
       }}

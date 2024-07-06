@@ -8,7 +8,7 @@ export const UserContex = createContext<{
   userExpenseData: Budget[] | undefined;
   updateData: () => void;
 }>({
-  user: null,
+  user: undefined,
   totalBudget: [],
   userExpenseData: undefined,
   isLoading: true,

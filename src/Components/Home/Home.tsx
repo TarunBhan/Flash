@@ -8,7 +8,7 @@ import { UserContex } from "../../context/UserContext";
 
 const Home = () => {
   const [data, setData] = useState<any>([]);
-  const { user, userExpenseData } = useContext(UserContex);
+  const { user, userExpenseData, totalBudget } = useContext(UserContex);
   console.log({ userExpenseData });
   const getBudgetData = async () => {
     try {
@@ -46,8 +46,8 @@ const Home = () => {
         flexWrap: "wrap",
       }}
     >
-      <AddExpense />
       <BudgetWidget />
+      {totalBudget?.length >= 1 && <AddExpense />}
       {userExpenseData &&
         userExpenseData?.map((item: any, index) => {
           return <ExpenseWidget budgetData={item} key={index} />;
