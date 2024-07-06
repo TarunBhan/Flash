@@ -6,7 +6,7 @@ import Home from "../Home/Home";
 import Loader from "../Loader/Loader";
 
 const Layout: FC = () => {
-  const { user: userData, isLoading } = useContext(UserContex);
+  const { isLoading } = useContext(UserContex);
 
   useEffect(() => {
     const subscription = onAuthStateChanged(auth, (user) => {

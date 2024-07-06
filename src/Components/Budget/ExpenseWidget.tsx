@@ -26,7 +26,7 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
         `${budgetName || budgetData?.budgetName}`
       );
       await deleteDoc(expenseDocRef);
-      toast.success(budgetData?.budgetName);
+      toast.info("Budget: " + budgetData?.budgetName + " Deleted SuccessFully");
       updateData();
     } catch (e) {
       console.log(e);
