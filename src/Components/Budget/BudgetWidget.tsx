@@ -6,6 +6,7 @@ import { db } from "../../firebase";
 import { UserContex } from "../../context/UserContext";
 import { useForm } from "react-hook-form";
 import { getRandomNumber } from "../utils";
+import { toast } from "react-toastify";
 
 const BudgetWidget = () => {
   const { user, totalBudget, updateData } = useContext(UserContex);
@@ -40,6 +41,7 @@ const BudgetWidget = () => {
     setLoading(true);
     if (totalBudget.find((item) => item === data?.budgetName)) {
       setLoading(false);
+      toast.error(`${data?.budgetName} Already Exsist!`);
       return;
     }
     const expenseDocRef = doc(
@@ -53,6 +55,7 @@ const BudgetWidget = () => {
       });
       setLoading(false);
       updateData();
+      toast.success(`${data?.budgetName} Budget Created!`);
       reset();
       // const dataRef = await addDoc(
       //   collection(db, "users/BE4VYqOT0dbyWbtSrZZXdsNH2CZ2/Expenses"),
@@ -60,6 +63,7 @@ const BudgetWidget = () => {
       // );
     } catch (e) {
       console.log(e);
+      toast.error(`${e}`);
     }
   };
   const handleBudget = async () => {

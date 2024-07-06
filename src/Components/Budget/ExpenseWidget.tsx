@@ -8,11 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Budget } from "../../interface";
 import { getDetailedExpensesInfo, getRandomNumber } from "../utils";
 import { UserContex } from "../../context/UserContext";
+import { toast } from "react-toastify";
 
 const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
   const { budgetName } = useParams();
   const { user, updateData } = useContext(UserContex);
-  const navigate = useNavigate();
   const color = "#009ce8";
   const { totalExpenses, amountLeft, widthPercentage } =
     getDetailedExpensesInfo(budgetData);
@@ -26,12 +26,13 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
         `${budgetName || budgetData?.budgetName}`
       );
       await deleteDoc(expenseDocRef);
+      toast.success(budgetData?.budgetName);
       updateData();
     } catch (e) {
       console.log(e);
     }
   };
-  console.log(widthPercentage, budgetData?.budgetName, ">>>>");
+
   return (
     <div
       style={{

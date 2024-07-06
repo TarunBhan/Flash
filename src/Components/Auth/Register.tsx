@@ -1,12 +1,14 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import baseTheme from "../Theme/baseTheme";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import { EMAIL_REGEX, PASSWORD } from "../constant /constant";
+import { EMAIL_REGEX, getErrorMessage, PASSWORD } from "../constant /constant";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
   const [formData, setFormData] = useState<{
@@ -25,6 +27,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
     mode: "onChange",
     reValidateMode: "onChange",
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const subscription = watch((data) => {
@@ -37,6 +40,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
+    setLoading(true);
     try {
       //Add Firebase logic For User
       await createUserWithEmailAndPassword(
@@ -46,16 +50,25 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
       );
 
       const user = auth.currentUser;
+
       if (user) {
+        await updateProfile(user, {
+          displayName: formData?.firstName || "",
+        });
         await setDoc(doc(db, "users", user?.uid), {
           email: formData?.email || "",
           firstName: formData?.firstName,
           lastName: formData?.lastName,
         });
       }
+      setLoading(false);
+      navigate("/");
+      toast.success("SignUp SuccessFull!!");
       console.log({ user });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setLoading(false);
+      const errorMessage = getErrorMessage(error.code);
+      toast.error(errorMessage);
     }
   };
 

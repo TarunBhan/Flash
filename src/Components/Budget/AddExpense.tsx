@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Button from "../Button/Button";
 import { db } from "../../firebase";
 import { arrayUnion, doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const AddExpense = () => {
   const { user, totalBudget, updateData } = useContext(UserContex);
@@ -52,7 +53,10 @@ const AddExpense = () => {
       );
       setIsLoading(false);
       updateData();
-      // reset();
+      toast.success(
+        `Expense:${data?.expenseName} added in ${data?.budgetName}`
+      );
+      reset();
     } catch (e) {
       setIsLoading(false);
       console.log(e);

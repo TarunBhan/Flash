@@ -7,6 +7,7 @@ import SignoutIcon from "../../Assets/Svg/SignOutIcon";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { user, totalBudget } = useContext(UserContex);

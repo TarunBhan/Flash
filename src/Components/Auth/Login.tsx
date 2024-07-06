@@ -1,12 +1,9 @@
 import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import baseThemeIN from "../Theme/baseTheme";
 import baseTheme from "../Theme/baseTheme";
-
-import { EMAIL_REGEX, PASSWORD } from "../constant /constant";
+import { EMAIL_REGEX, getErrorMessage, PASSWORD } from "../constant /constant";
 import "./Form.css";
 import Register from "./Register";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +11,7 @@ import { UserContex } from "../../context/UserContext";
 import { auth } from "../../firebase";
 import { useForm } from "react-hook-form";
 import { FormWrapper, HeaderImage, ImageWrapper } from "./Login.styles";
+import { toast } from "react-toastify";
 const Login: FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<{
@@ -60,9 +58,13 @@ const Login: FC = () => {
         formData?.password || ""
       );
       setLoading(false);
-      window.location.href = "/";
-    } catch (e) {
+      const users = auth.currentUser;
+      toast.success(`Welcome back ${users?.displayName}!`);
+      navigate("/");
+    } catch (error: any) {
       setLoading(false);
+      const errorMessage = getErrorMessage(error.code);
+      toast.error(errorMessage);
     }
   };
 
