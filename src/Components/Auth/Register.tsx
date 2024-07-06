@@ -264,6 +264,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
             fontWeight: baseTheme.fontWeights[3],
             color: baseTheme.colors.cyanBlue,
             paddingLeft: "1px",
+            cursor: "pointer",
           }}
         >
           {" Sign Up"}

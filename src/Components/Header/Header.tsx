@@ -92,14 +92,15 @@ const Header = () => {
               position: "relative",
             }}
           >
-            <a
-              href="/budget"
+            <Text
+              onClick={() => {
+                navigate("/budget");
+              }}
               color={baseTheme.colors.black}
               style={{ paddingRight: 20 }}
-              onClick={() => {}}
             >
               Budgets
-            </a>
+            </Text>
             <div
               onClick={() => {
                 setShowUserInfo(true);

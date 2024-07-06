@@ -19,3 +19,18 @@ export const HeaderImage = styled.div`
     display: none !important;
   }
 `;
+
+export const GuestButton = styled.div`
+  height: 40px;
+  width: 120px;
+  background: rgb(0, 155, 123);
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 12px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: rgba(0, 155, 123, 0.4) 0px 0px 9px 9px;
+  }
+`;
