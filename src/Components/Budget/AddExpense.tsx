@@ -118,7 +118,6 @@ const AddExpense = () => {
               </text>
               <input
                 type="text"
-                autoFocus
                 required
                 placeholder="Expense Name"
                 style={{
