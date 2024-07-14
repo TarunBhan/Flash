@@ -6,8 +6,8 @@ import UserIcon from "../../Assets/Svg/UserIcon";
 import SignoutIcon from "../../Assets/Svg/SignOutIcon";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { LinkComponent, LogoutContainer } from "./Header.styles";
 
 const Header = () => {
   const { user, totalBudget } = useContext(UserContex);
@@ -17,9 +17,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
   const handleOutsideClick = () => {
     setShowUserInfo(false);
@@ -82,6 +80,9 @@ const Header = () => {
           }}
         >
           <img
+            onClick={() => {
+              navigate("/");
+            }}
             src={require("../../Assets/Images/Expense_Logo.webp")}
             alt="Expense Image"
             width="50px"
@@ -94,16 +95,26 @@ const Header = () => {
               position: "relative",
             }}
           >
-            <Text
-              onClick={() => {
-                navigate("/budget");
-              }}
+            <LinkComponent
+              to="/"
               color={baseTheme.colors.black}
-              style={{ paddingRight: 20 }}
+              style={{
+                textDecoration: "none",
+                marginRight: "0px",
+              }}
             >
-              Budgets
-            </Text>
-            <div
+              Home
+            </LinkComponent>
+            <LinkComponent
+              to="/gemini"
+              color={baseTheme.colors.black}
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              Ask Ai
+            </LinkComponent>
+            <LogoutContainer
               onClick={() => {
                 setShowUserInfo(true);
               }}
@@ -134,6 +145,7 @@ const Header = () => {
                     boxShadow: "rgb(115 115 115 / 50%) -1px -2px 19px 3px",
                     flexDirection: "column",
                     padding: "12px",
+                    zIndex: 999,
                   }}
                 >
                   <div
@@ -204,6 +216,7 @@ const Header = () => {
                       position: "absolute",
                       top: "10px",
                       right: "13px",
+                      cursor: "pointer",
                       padding: "5px",
                       border: "1px solid #b12a2a",
                       borderRadius: "100px",
@@ -214,7 +227,7 @@ const Header = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </LogoutContainer>
           </div>
         </div>
       )}

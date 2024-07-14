@@ -62,12 +62,10 @@ const BudgetWidget = () => {
       //   { data: { budgets: "Hey There", expense: [{ kurkire: 10 }] } }
       // );
     } catch (e) {
-      console.log(e);
       toast.error(`${e}`);
     }
   };
   const handleBudget = async () => {
-    console.log("render");
     const expenseDocRef = doc(
       db,
       `users/BE4VYqOT0dbyWbtSrZZXdsNH2CZ2/budgets/${data?.budgetName}`
@@ -89,53 +87,12 @@ const BudgetWidget = () => {
       //   collection(db, "users/BE4VYqOT0dbyWbtSrZZXdsNH2CZ2/Expenses"),
       //   { data: { budgets: "Hey There", expense: [{ kurkire: 10 }] } }
       // );
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   //Delete Budget
 
   //Delete Expense
-  const DeleteExpense = async () => {
-    const key = 513;
-    const t = [
-      {
-        budgetName: "Coffee",
-        expenses: {
-          budgetValue: 100,
-          expenses: [
-            {
-              name: "Hey Tarun This SIde",
-              valie: 10,
-            },
-            {
-              valie: 10,
-              name: "Hey lklkk This SIde",
-            },
-          ],
-        },
-      },
-      {
-        budgetName: "Red",
-        data: {
-          expenses: [
-            {
-              valie: 10,
-              key: 513,
-              name: "Hey lklkk This SIde",
-            },
-            {
-              valie: 10,
-              key: 232,
-              name: "Side One",
-            },
-          ],
-          budgetValue: 100,
-        },
-      },
-    ];
-  };
 
   //GetBudget
 

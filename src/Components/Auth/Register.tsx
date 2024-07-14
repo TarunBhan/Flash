@@ -64,7 +64,6 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
       setLoading(false);
       navigate("/");
       toast.success("SignUp SuccessFull!!");
-      console.log({ user });
     } catch (error: any) {
       setLoading(false);
       const errorMessage = getErrorMessage(error.code);

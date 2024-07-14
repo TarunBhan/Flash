@@ -8,7 +8,6 @@ const Input: FC<{
   props: any;
   style?: React.CSSProperties | undefined;
 }> = ({ headingText, type, autoFocus = false, placeHolder, props, style }) => {
-  console.log(props, "index");
   return (
     <div
       style={{

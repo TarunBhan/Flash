@@ -51,10 +51,6 @@ const Login: FC = () => {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  useEffect(() => {
-    console.log(formData?.email, ">>>>");
-  }, [formData]);
-
   const handleLogin = async () => {
     setLoading(true);
     //Add Firebase logic For User
@@ -160,7 +156,6 @@ const Login: FC = () => {
               <div className="form1">
                 <Register
                   onClick={() => {
-                    console.log("render");
                     setIsLoginForm(false);
                   }}
                 />

@@ -1,19 +1,29 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Text } from "../../Styles/index.styles";
 import baseTheme from "../Theme/baseTheme";
 import { ResponseText } from "../constant /constant";
 import Input from "../Input/Input";
 import LeftArrow from "../../Assets/Svg/LeftArrowIcon";
-import { InputWrapper, RecentSection, SendButtonWrapper } from "./index.style";
+import {
+  HeadingContainer,
+  InputWrapper,
+  RecentSection,
+  SendButtonWrapper,
+} from "./index.style";
 import Loader from "./Loader";
+import BottomSuggestionBar from "./SuggestedPrompt";
 
 const GeminiAi = () => {
   const [text, setText] = useState<string>("");
   const [prompt, setPrompt] = useState<string>("");
   const [loader, setLoader] = useState<boolean>(false);
+  const [showPromtWritten, setShowPromtWritten] = useState<boolean>(false);
+  const [hideSuggestion, setHideSuggestion] = useState<boolean>(true);
+  const inputRef = useRef<any>();
+
   const apiKey = process.env.GEMINI_API_KEY!;
-  console.log({ apiKey });
+
   const generationConfig = {
     temperature: 1,
     topP: 0.95,
@@ -24,12 +34,12 @@ const GeminiAi = () => {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyDQ2yAH4OfvsQYoHlTGjlBtLj2Ub_4bMOQ"
   );
-  console.log(text);
 
   const delayPara = (index: number, nextWord: string) => {
     setTimeout(() => {
       setText((prev) => prev + nextWord);
     }, 100 * index);
+    console.log("val>>>");
   };
 
   const handleAiResponse = (responseText: string) => {
@@ -53,18 +63,36 @@ const GeminiAi = () => {
     setPrompt(event.target.value);
   };
 
-  useEffect(() => {}, []);
+  function myFunction(event: any) {
+    var x = event.code;
+    if (x === "Enter") {
+      letTheAiRun();
+      setShowPromtWritten(true);
+      setText("");
+    }
+  }
 
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
   });
-  const letTheAiRun = async () => {
+
+  const letTheAiRun = async (promptText?: string) => {
+    inputRef.current.value = "";
+    setText("");
+    const content = prompt !== "" ? prompt : promptText!;
+    setHideSuggestion(false);
     setLoader(true);
-    const result = await model.generateContent(prompt);
+    setShowPromtWritten(true);
+    const result = await model.generateContent(content);
     const response = await result.response;
     const text = response.text();
     setLoader(false);
     handleAiResponse(text);
+  };
+
+  const setPromptCallBack = (promptText: string) => {
+    setPrompt(promptText);
+    letTheAiRun(promptText);
   };
 
   return (
@@ -73,18 +101,26 @@ const GeminiAi = () => {
         height: "90%",
         background: "white",
         display: "flex",
+        flexDirection: "column",
+        paddingInline: "18px",
       }}
     >
+      <HeadingContainer>
+        Benefit from{" "}
+        <span style={{ color: "#009b7b" }}>AI-driven suggestions</span> and tips
+        tailored to your spending habits and financial goals.
+      </HeadingContainer>
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           width: "100%",
+          height: "90%",
           gap: 10,
         }}
       >
         {/* SideBar */}
-        <RecentSection
+        {/* <RecentSection
           style={{
             display: "flex",
             width: "30%",
@@ -93,7 +129,7 @@ const GeminiAi = () => {
           }}
         >
           <h3>Recent </h3>
-        </RecentSection>
+        </RecentSection> */}
         {/* chatSystem */}
         <div
           style={{
@@ -104,26 +140,61 @@ const GeminiAi = () => {
           }}
         >
           <div
-            style={{ width: "100%", display: "flex", flexDirection: "column" }}
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              height: "330px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <Text>Ask Ai</Text>
-            <Text>{prompt}</Text>
-            {loader && <Loader />}
-            {text !== "" && (
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: text,
-                }}
-              />
+            {hideSuggestion && (
+              <BottomSuggestionBar callBack={setPromptCallBack} />
             )}
+            <div
+              style={{
+                width: "80%",
+                justifyContent: "center",
+                overflow: "scroll",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {showPromtWritten && (
+                <div
+                  style={{
+                    padding: "10px",
+                    background: "#ebebeb",
+                    borderRadius: "12px",
+                    alignSelf: "end",
+                  }}
+                >
+                  <Text>{prompt}</Text>
+                </div>
+              )}
+              {loader && <Loader />}
+
+              {text !== "" && (
+                <p
+                  style={{
+                    overflow: "scroll",
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: text,
+                  }}
+                />
+              )}
+            </div>
           </div>
+
           {/* input */}
           <div
             style={{
               width: "100%",
               display: "flex",
               height: "100%",
-              //   justifyContent: "center",
+              justifyContent: "center",
               alignItems: "flex-end",
             }}
           >
@@ -141,6 +212,9 @@ const GeminiAi = () => {
             >
               <input
                 onChange={handleInputChange}
+                ref={inputRef}
+                disabled={loader}
+                onKeyPress={myFunction}
                 style={{
                   width: "80%",
                   height: "100%",
@@ -151,10 +225,9 @@ const GeminiAi = () => {
                   paddingInline: "10px",
                 }}
                 placeholder="How Much Red Wine Cost,Which is the best fruit to eat?"
-              />
-
+              />{" "}
               <SendButtonWrapper
-                onClick={letTheAiRun}
+                onClick={letTheAiRun as any}
                 style={{
                   background: "rgb(0 86 255)",
                   height: "30px",

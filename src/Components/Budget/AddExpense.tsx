@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const AddExpense = () => {
   const { user, totalBudget, updateData } = useContext(UserContex);
-  console.log({ totalBudget });
+
   const {
     register,
     formState: { errors, isValid },
@@ -33,7 +33,7 @@ const AddExpense = () => {
 
   const handleBudget = async () => {
     setIsLoading(true);
-    console.log(data?.expenseAmount);
+
     const expenseDocRef = doc(
       db,
       `users/${user?.uid}/budgets/${data?.budgetName}`
@@ -59,7 +59,6 @@ const AddExpense = () => {
       reset();
     } catch (e) {
       setIsLoading(false);
-      console.log(e);
     }
   };
   return (
@@ -182,7 +181,6 @@ const AddExpense = () => {
               <option value="">--Please Select A Budget--</option>
               {totalBudget &&
                 totalBudget?.map((item, index) => {
-                  console.log({ item });
                   return (
                     <option value={item} key={index}>
                       {item}

@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { ReactNode } from "react";
 import { UserContex } from "./UserContext";
 import { auth, db } from "../firebase";
@@ -23,7 +29,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         if (user) {
           const docRef = doc(db, "users", user?.uid || "");
 
-          console.log({ docRef });
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
             setUser({ ...docSnap.data(), uid: user?.uid });
@@ -35,7 +40,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       });
     } catch (e) {
       setLoading(false);
-      console.log(e);
     }
   };
 
@@ -47,7 +51,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       const querySnapshot = await getDocs(collectionRef);
       querySnapshot.docs?.forEach((item) => {
         tempBudgetArray.push(item?.id);
-        console.log(item.data()?.budgetValue, "asas");
+
         temp.push({
           budgetName: item?.id,
           expenses: item?.data()?.expenses,
@@ -57,14 +61,12 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
       setTotalBudgets(tempBudgetArray);
       setUserExpenseData(temp);
-    } catch (e) {
-      console.log("error>>>", e);
-    }
+    } catch (e) {}
   };
 
-  const updateData = () => {
+  const updateData = useCallback(() => {
     getBudgetData();
-  };
+  }, [user]);
 
   useEffect(() => {
     getUserData();

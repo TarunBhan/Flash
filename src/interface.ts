@@ -1,4 +1,4 @@
-interface Expense {
+export interface Expense {
   key: number;
   value: number;
   name: string;

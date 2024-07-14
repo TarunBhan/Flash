@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import baseTheme from "../Theme/baseTheme";
 import { CustomButton, ProgressBar } from "./Budget.styles";
 import { deleteDoc, doc } from "firebase/firestore";
@@ -17,7 +17,6 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
   const { totalExpenses, amountLeft, widthPercentage } =
     getDetailedExpensesInfo(budgetData);
 
-  console.log("hey>>>", color);
   const deleteBudget = async () => {
     try {
       const expenseDocRef = doc(
@@ -28,10 +27,18 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
       await deleteDoc(expenseDocRef);
       toast.info("Budget: " + budgetData?.budgetName + " Deleted SuccessFully");
       updateData();
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
+
+  const renderProgressBar = useMemo(() => {
+    return (
+      <ProgressBar
+        width={widthPercentage}
+        color={color}
+        animationname={`progressAnimate-${getRandomNumber()}`}
+      />
+    );
+  }, [widthPercentage, color]);
 
   return (
     <div
@@ -87,11 +94,7 @@ const ExpenseWidget: FC<{ budgetData: Budget }> = ({ budgetData }) => {
               marginTop: "12px",
             }}
           >
-            <ProgressBar
-              width={widthPercentage}
-              color={color}
-              animationName={`progressAnimate-${getRandomNumber()}`}
-            />
+            {renderProgressBar}
           </div>
           <div
             style={{

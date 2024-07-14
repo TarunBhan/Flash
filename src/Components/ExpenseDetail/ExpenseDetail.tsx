@@ -15,14 +15,12 @@ const ExpenseDetailScreen: FC = () => {
   const getSingleBudgetData = async () => {
     try {
       const docRef = doc(db, `users/${user?.uid}/budgets/${budgetName}`);
-      console.log({ docRef });
+
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setBudgetData(docSnap.data() as Budget);
       }
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
@@ -34,7 +32,6 @@ const ExpenseDetailScreen: FC = () => {
     return <></>;
   }
 
-  console.log(">>>", budgetData);
   return (
     <div
       style={{

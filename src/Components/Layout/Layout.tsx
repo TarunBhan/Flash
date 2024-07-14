@@ -10,9 +10,7 @@ const Layout: FC = () => {
 
   useEffect(() => {
     const subscription = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("User is authenticated:", user);
-      } else {
+      if (!user) {
         window.location.href = "/auth";
       }
     });

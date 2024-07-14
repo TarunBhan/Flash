@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProgressBar = styled.div<{
   width?: string;
   color?: string;
-  animationName: string;
+  animationname: string;
 }>`
   width: ${({ width = "0%" }) => width};
   background-color: ${({ color }) => color};
@@ -12,8 +12,8 @@ export const ProgressBar = styled.div<{
   border-radius: 30px;
   transition: 0.2s linear;
   transition-property: width, background-color;
-  animation: ${({ animationName = "ProgressAnimation" }) => animationName} 2s;
-  @keyframes ${({ animationName = "ProgressAnimation" }) => animationName} {
+  animation: ${({ animationname = "ProgressAnimation" }) => animationname} 2s;
+  @keyframes ${({ animationname = "ProgressAnimation" }) => animationname} {
     0% {
       width: 0%;
       background-color: ${({ color }) => color};
