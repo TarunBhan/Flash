@@ -27,8 +27,8 @@ const Login: FC = () => {
   }>();
   const { user } = useContext(UserContex);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isLoginForm, setIsLoginForm] = useState<boolean>(false);
-
+  const [isSignupForm, setIsSignupForm] = useState<boolean>(false);
+  console.log({ isSignupForm });
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -89,7 +89,8 @@ const Login: FC = () => {
     }
   };
 
-  const name = isLoginForm ? "show-login" : "show-signup";
+  const name = isSignupForm ? "show-login" : "show-signup";
+  console.log(name, ">>>>");
   return (
     <>
       <div
@@ -156,7 +157,7 @@ const Login: FC = () => {
               <div className="form1">
                 <Register
                   onClick={() => {
-                    setIsLoginForm(false);
+                    setIsSignupForm(false);
                   }}
                 />
               </div>
@@ -275,13 +276,13 @@ const Login: FC = () => {
                         fontWeight: baseTheme.fontWeights[3],
                       }}
                     >
-                      {isLoginForm
-                        ? `Don't Have An Account?`
-                        : "Already have a account?"}
+                      {isSignupForm
+                        ? "Already have a account?"
+                        : `Don't Have An Account?`}
                     </text>
                     <text
                       onClick={() => {
-                        setIsLoginForm(true);
+                        setIsSignupForm(true);
                       }}
                       style={{
                         fontSize: baseTheme.fontSizes[1],
@@ -292,7 +293,7 @@ const Login: FC = () => {
                         cursor: "pointer",
                       }}
                     >
-                      {isLoginForm ? " Sign Up" : "Login"}
+                      {isSignupForm ? " Login" : " Sign Up"}
                     </text>
                   </div>
                 </form>

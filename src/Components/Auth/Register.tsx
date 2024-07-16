@@ -253,7 +253,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
             fontWeight: baseTheme.fontWeights[3],
           }}
         >
-          {`Don't Have An Account?`}
+          {`Already have a account?`}
         </text>
         <text
           onClick={() => onClick()}
@@ -266,7 +266,7 @@ const Register: FC<{ onClick: () => void }> = ({ onClick }) => {
             cursor: "pointer",
           }}
         >
-          {" Sign Up"}
+          {" Login Up"}
         </text>
       </div>
     </form>

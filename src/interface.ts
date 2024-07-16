@@ -2,6 +2,7 @@ export interface Expense {
   key: number;
   value: number;
   name: string;
+  timeStamp: string;
 }
 
 export interface Budget {

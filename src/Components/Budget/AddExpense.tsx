@@ -12,10 +12,12 @@ const AddExpense = () => {
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { isValid },
     reset,
     watch,
   } = useForm();
+  const currDate = new Date();
+  const timeStamp = `${currDate.getDate()}-${currDate.getMonth()}-${currDate.getFullYear()}`;
 
   const [isLoading, setIsLoading] = useState<boolean>();
   const [data, setData] = useState<{
@@ -47,6 +49,7 @@ const AddExpense = () => {
             name: data?.expenseName,
             value: Number(data?.expenseAmount),
             key: Math.floor(Math.random() * (999 - 100 + 1) + 100),
+            timeStamp,
           }),
         },
         { merge: true }

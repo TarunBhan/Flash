@@ -80,7 +80,7 @@ const Table = () => {
                     <TableRow key={`Budget${budget.budgetName! + index}`}>
                       <td>{row.name}</td>
                       <td>{row.value}</td>
-                      <td>{row.name}</td>
+                      <td>{row.timeStamp}</td>
                       <td>
                         <div
                           style={{
