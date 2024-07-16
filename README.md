@@ -19,6 +19,9 @@ Project is created with:
 * react-dom: 18.3.1
 * styled-components: 6.1.11
 * @google/generative-ai: 0.14.1
+* react-hook-form: 7.52.1
+* react-toastify: 10.0.5
+* styled-components: 6.1.11
  
 	
 ## Setup
@@ -35,11 +38,12 @@ $ yarn start
  - [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
  - [Google Gemini](https://gemini.google.com/)
  
+## Tech Stack
 
+**Client:** React,Context,Typescript,Css,Google Generative-ai
 
-
-## 🛠 Skills
-Javascript, HTML, CSS...
+**Server:** Firebase
+.
 
 
 ## Badges
@@ -49,11 +53,6 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 [![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
-
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
 
 
 ## LOGO
@@ -72,9 +71,4 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 
 
-## Tech Stack
-
-**Client:** React,Context,Typescript,Css
-
-**Server:** Node, Firebase
 
