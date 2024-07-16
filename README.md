@@ -1,46 +1,80 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Expense Managment Web Application 
 
-## Available Scripts
+Expense Tracking:
 
-In the project directory, you can run:
+Daily, Weekly, Monthly Logs: Users can log expenses on a daily, weekly, or monthly basis, categorizing them for better clarity.
 
-### `yarn start`
+Budget Management:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Custom Budgets: Create custom budgets for different categories such as groceries, utilities, dining, and more
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+AI Assistance:
 
-### `yarn test`
+Chat and Suggestions: Users can chat with an AI assistant to get personalized suggestions and advice on managing expenses more effectively.
+## Technologies
+Project is created with:
+* firebase: 10.12.2
+* react: 18.3.1
+* react-dom: 18.3.1
+* styled-components: 6.1.11
+* @google/generative-ai: 0.14.1
+ 
+	
+## Setup
+To run this project, install it locally using npm:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$ yarn install
+$ yarn start
+```
 
-### `yarn build`
+## Acknowledgements
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - [Firebase Documentation](https://firebase.google.com/docs)
+ - [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
+ - [Google Gemini](https://gemini.google.com/)
+ 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## 🛠 Skills
+Javascript, HTML, CSS...
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Badges
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Add badges from somewhere like: [shields.io](https://shields.io/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
+[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Documentation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Documentation](https://linktodocumentation)
+
+
+## LOGO
+![Logo](https://res.cloudinary.com/deycq6raf/image/upload/v1721155925/Expense_Logo_sgm1cb.webp)
+## Screenshots
+![image](https://res.cloudinary.com/deycq6raf/image/upload/v1721154906/Screenshot_2024-07-16_at_11.49.16_PM_z55z88.png)
+
+![image](https://res.cloudinary.com/deycq6raf/image/upload/v1721158298/Screenshot_2024-07-17_at_1.01.30_AM_tiycda.png)
+
+![image](https://res.cloudinary.com/deycq6raf/image/upload/v1721155732/Screenshot_2024-07-14_at_4.57.13_PM_rfebx3.png)
+
+![image](https://res.cloudinary.com/deycq6raf/image/upload/v1721154827/Screenshot_2024-07-16_at_11.50.17_PM_jt5rox.png)
+
+![image](https://res.cloudinary.com/deycq6raf/image/upload/v1721154829/Screenshot_2024-07-16_at_11.51.31_PM_ycytzd.png)
+
+
+
+
+## Tech Stack
+
+**Client:** React,Context,Typescript,Css
+
+**Server:** Node, Firebase
+
