@@ -4,8 +4,6 @@ import ExpenseWidget from "../Budget/ExpenseWidget";
 import AddExpense from "../Budget/AddExpense";
 import { UserContex } from "../../context/UserContext";
 import Table from "../Table/Table";
-import { Text } from "../../Styles/index.styles";
-import baseTheme from "../Theme/baseTheme";
 
 const Home = () => {
   const { userExpenseData, totalBudget } = useContext(UserContex);
