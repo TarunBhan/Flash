@@ -10,6 +10,8 @@ import Loader from "./Components/Loader/Loader";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastManager } from "./Toast/ToastManager";
 import GeminiAi from "./Components/GeminiAi";
+import { Provider } from "react-redux";
+import { Store } from "./Store/NotestStore";
 
 function App() {
   const { user, isLoading } = useContext(UserContex);
@@ -29,25 +31,27 @@ function App() {
           padding: "0px",
         }}
       >
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route
-              path={user ? "/" : "/auth"}
-              element={user ? <Layout /> : <Login />}
-              index
-            />
+        <Provider store={Store}>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route
+                path={user ? "/" : "/auth"}
+                element={user ? <Layout /> : <Login />}
+                index
+              />
 
-            <Route path="/:path?" element={<Layout />} />
-            <Route path="/auth" element={<Login />} />
-            <Route path="/gemini" element={<GeminiAi />} />
+              <Route path="/:path?" element={<Layout />} />
+              <Route path="/auth" element={<Login />} />
+              <Route path="/gemini" element={<GeminiAi />} />
 
-            <Route
-              path="/budget/:budgetName?"
-              element={<ExpenseDetailScreen />}
-            />
-          </Routes>
-        </BrowserRouter>
+              <Route
+                path="/budget/:budgetName?"
+                element={<ExpenseDetailScreen />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </Provider>
       </div>
       <img
         src="https://codinginpublic.dev/projects/react-router-budget-app/assets/wave-47c58563.svg"

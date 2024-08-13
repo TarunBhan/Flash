@@ -13,6 +13,7 @@ import {
 } from "./index.style";
 import Loader from "./Loader";
 import BottomSuggestionBar from "./SuggestedPrompt";
+import Notes from "../Notes/Notes";
 
 const GeminiAi = () => {
   const [text, setText] = useState<string>("");
